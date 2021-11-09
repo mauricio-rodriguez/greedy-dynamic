@@ -46,10 +46,15 @@ def maxSubArraySumKadane(arr,size):
     for i in range(0, size):
         if arr[i] > arr[i] + current_sum:
             current_sum = arr[i]
+            print("Current sum: ",current_sum)
         else:
             current_sum += arr[i]
+            print("Current sum: ",current_sum)
         if current_sum > max_sum:
             max_sum = current_sum
+            print("Current sum: ",current_sum)
              
     return max_sum
  
+arr = [-1,-3,-4,-2,-5]
+print("MaxSum: ",maxSubArraySumKadane(arr,5))
