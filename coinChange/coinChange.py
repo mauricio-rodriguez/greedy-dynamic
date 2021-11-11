@@ -12,16 +12,20 @@ def coinChangeRecursive(arr, ind, n):
 
 def coinChangeWaysDP(arr, ind, n):
 
-    table = [[0 for x in range(ind)] for x in range(n+1)]
-    
-    for i in range(ind):
-        table[0][i] = 1
+    table = [[0 for x in range(n+1)] for x in range(len(arr))]
 
-    for i in range(1, n+1):
-        for j in range(ind):
- 
-            x = table[i - arr[j]][j] if i-arr[j] >= 0 else 0
-            y = table[i][j-1] if j >= 1 else 0
-            table[i][j] = x + y
- 
-    return table[n][ind-1]
+    for i in range(len(arr)):
+        table[i][0] = 1
+
+    for i in range(n+1):
+        if(i % arr[0] == 0):
+            table[0][i] = 1
+
+    for i in range(1,len(arr)):
+        for j in range(1,n + 1):
+            if arr[i] > j:
+                table[i][j] = table[i - 1][j]
+            else:
+                table[i][j] = table[i - 1][j] + table[i][j - arr[i]]
+
+    return table[len(arr)-1][n]
