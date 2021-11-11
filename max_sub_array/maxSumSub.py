@@ -56,5 +56,25 @@ def maxSubArraySumKadane(arr,size):
              
     return max_sum
  
-arr = [-1,-3,-4,-2,-5]
-print("MaxSum: ",maxSubArraySumKadane(arr,5))
+# arr = [-1,-3,-4,-2,-5]
+# print("MaxSum: ",maxSubArraySumKadane(arr,5))
+
+def maxSubArraySumKadaneIndex(arr,size):
+    max_sum = -math.inf
+    current_sum = 0
+    start = end = _start = 0
+    for i in range(0, size):
+        if arr[i] > arr[i] + current_sum:
+            current_sum = arr[i]
+            _start = i + 1
+            # print("Current sum: ",current_sum)
+        else:
+            current_sum += arr[i]
+            # print("Current sum: ",current_sum)
+        if current_sum > max_sum:
+            max_sum = current_sum
+            start = _start
+            end = i
+            # print("Current sum: ",current_sum)
+             
+    return max_sum, start - 1, end
